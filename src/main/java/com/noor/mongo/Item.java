@@ -1,8 +1,6 @@
-package com.noor.configurations;
+package com.noor.mongo;
 
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.Id;
 import java.util.Date;
@@ -10,19 +8,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Document
-public class User {
+public class Item {
     @Id
-    private String userId;
+    private String ItemId;
     private String name;
     private Date creationDate = new Date();
     private Map<String, String> userSettings = new HashMap<>();
 
-    public String getUserId() {
-        return userId;
+    public String getItemId() {
+        return ItemId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setItemId(String itemId) {
+        this.ItemId = itemId;
     }
 
     public String getName() {
@@ -48,6 +46,5 @@ public class User {
     public void setUserSettings(Map<String, String> userSettings) {
         this.userSettings = userSettings;
     }
-    @Repository
-    public interface UserRepository extends MongoRepository {User,String}
+
 }
