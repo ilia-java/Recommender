@@ -1,18 +1,28 @@
 package com.noor.mongo;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/")
+@RequestMapping(value = "/api/v1/")
 public class ItemController {
 
-    private final ItemRepository userRepository;
-    public ItemController(ItemRepository userRepository) {
-        this.userRepository = userRepository;
+    @Autowired
+    private ItemService itemService;
+
+    @PostMapping(value = "add")
+    public ResponseEntity<Item> addItem(@RequestBody Item item) {
+        return ResponseEntity.ok(itemService.addItem(item));
     }
 
-    public ItemRepository getUserRepository() {
-        return userRepository;
+    @DeleteMapping(value = "delete")
+    public ResponseEntity<Boolean> deleteItem(@PathVariable("/{id}") String id) {
+        return ResponseEntity.ok(itemService.deleteItem(id));
+    }
+
+    @GetMapping(value = "get")
+    public ResponseEntity<Item> getIem(@PathVariable("/{id}") String id) {
+        return ResponseEntity.ok(itemService.getItem(id));
     }
 }
