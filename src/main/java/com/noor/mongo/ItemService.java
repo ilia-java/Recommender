@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
+
 @Service
 public class ItemService {
 
@@ -24,4 +26,5 @@ public class ItemService {
     public Item getItem(String id) {
         return mongoTemplate.findById(id, Item.class);
     }
+
 }
