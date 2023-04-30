@@ -1,31 +1,28 @@
-package com.noor.mongo;
+package com.noor.item;
 
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.lang.reflect.Array;
+import javax.persistence.*;
+import java.util.Map;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Document(collection = "rec")
+@Table(name = "item")
+@Document
 public class Item {
-
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ItemId;
     private String name;
-    private Array colNAme;
+    @Column
+    private Map<Integer, String> colsName;
 
-    public Array getColNAme() {
-        return colNAme;
+
+    public Map<Integer, String> getColsName() {
+        return colsName;
     }
 
-    public void setColNAme(Array colNAme) {
-        this.colNAme = colNAme;
+    public void setColsName(Map<Integer, String> colsName) {
+        this.colsName = colsName;
     }
 
     public Integer getItemId() {
