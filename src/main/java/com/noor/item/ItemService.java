@@ -33,7 +33,12 @@ public class ItemService {
     }
 
     public void deleteItem(int id) {
+
         itemRepository.deleteById(id);
     }
 
+    public Item addColName(Item item) {
+
+        return itemRepository.insert(item);
+    }
 }

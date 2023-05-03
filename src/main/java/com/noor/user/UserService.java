@@ -31,6 +31,9 @@ public class UserService {
     public User addUser(User user) {
         return userRepository.insert(user);
     }
+    public User addColName(User user) {
+        return userRepository.insert(user);
+    }
 
     public void deleteUserById(String id) {
         userRepository.deleteById(id);

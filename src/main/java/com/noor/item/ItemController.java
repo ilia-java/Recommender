@@ -31,6 +31,10 @@ public class ItemController {
     public Item createNewItem(@RequestBody Item newItem) {
         return itemService.addItem(newItem);
     }
+    @PostMapping(value = ("/colName"))
+    public Item insertColName(@RequestBody Item item){
+        return itemService.addColName(item);
+    }
 
 
     @PutMapping("/update/{id}")

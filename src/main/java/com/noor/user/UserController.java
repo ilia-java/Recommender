@@ -1,5 +1,6 @@
 package com.noor.user;
 
+import com.noor.item.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,10 @@ public class UserController {
     public void saveUser(@RequestBody User user) {
         userService.addUser(user);
     }
+    @PostMapping(value = ("/colName"))
+    public User insertColName(@RequestBody User user){
+        return userService.addColName(user);
+    }
 
     @DeleteMapping("/users/{id}")
     public void deleteUserById(@PathVariable String id) {
@@ -46,6 +51,7 @@ public class UserController {
             existingUser.setUserName(user.getUserName());
             existingUser.setProperty(user.getProperty());
             existingUser.setPassword(user.getPassword());
+            existingUser.setColsName(user.getColsName());
             userService.updateUser(existingUser);
         }
     }
