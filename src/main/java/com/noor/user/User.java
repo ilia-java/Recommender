@@ -2,10 +2,8 @@ package com.noor.user;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Map;
 
 @Table(name = "user")
 @Document
@@ -13,9 +11,24 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer userID;
+    @Column
+    private Map<Integer, String> colsName;
     private String userName;
     private Object password;
     private String property;
+
+
+    public void setUserID(Integer userID) {
+        this.userID = userID;
+    }
+
+    public Map<Integer, String> getColsName() {
+        return colsName;
+    }
+
+    public void setColsName(Map<Integer, String> colsName) {
+        this.colsName = colsName;
+    }
 
     public int getUserID() {
         return userID;

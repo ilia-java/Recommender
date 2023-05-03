@@ -18,6 +18,7 @@ public class ItemService {
     }
 
     public Item getById(int id) {
+
         return itemRepository.findById(id).orElse(null);
     }
 
@@ -27,6 +28,7 @@ public class ItemService {
     }
 
     public Item addItem(Item item) {
+
         return itemRepository.insert(item);
     }
 

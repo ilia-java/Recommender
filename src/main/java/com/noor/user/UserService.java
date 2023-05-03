@@ -14,18 +14,22 @@ public class UserService {
     private UserRepository userRepository;
 
     public List<User> getAllUsers() {
+
         return userRepository.findAll();
     }
 
     public User getUserById(String id) {
-        return userRepository.findById(id).orElse(null);
+        return
+                userRepository.findById(id).orElse(null);
     }
 
     public void updateUser(User user) {
+
         userRepository.save(user);
     }
-    public User addUser(User user){
-       return userRepository.insert(user);
+
+    public User addUser(User user) {
+        return userRepository.insert(user);
     }
 
     public void deleteUserById(String id) {
