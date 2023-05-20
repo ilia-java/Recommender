@@ -1,5 +1,6 @@
 package com.noor.user;
 
+import com.noor.item.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,9 @@ public class UserService {
     public User getUserById(String id) {
         return
                 userRepository.findById(id).orElse(null);
+    }
+    public User getDataBaseId(String dataBaseId){
+        return userRepository.findById(dataBaseId).orElse(null);
     }
 
     public void updateUser(User user) {

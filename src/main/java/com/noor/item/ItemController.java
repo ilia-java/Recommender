@@ -3,9 +3,8 @@ package com.noor.item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
-
+// write get value by item id baraye user ham bezar
+//config mongo va ezafe kardane kelase jadid
 @Component
 @RestController
 @RequestMapping(value = "/item/controller")
@@ -19,12 +18,16 @@ public class ItemController {
 
     @GetMapping(value = "/items")
     public @ResponseBody Iterable<Item> getAllItem() {
-        return itemService.getAllUsers();
+        return itemService.getAllItem();
     }
 
     @GetMapping(value = "view/{id}")
     public Item getItem(@PathVariable Integer id) {
         return itemService.getById(id);
+    }
+    @GetMapping(value = "/dataBaseId")
+    public Item getDataBaseId(@PathVariable int id){
+        return itemService.getDataBaseId(id);
     }
 
     @PostMapping(value = "/add")
@@ -36,14 +39,14 @@ public class ItemController {
         return itemService.addColName(item);
     }
 
-
     @PutMapping("/update/{id}")
-    public void updateUser(@PathVariable int id, @RequestBody Item item) {
+    public void updateItem(@PathVariable int id, @RequestBody Item item) {
         Item existingUser = itemService.getById(id);
         if (existingUser != null) {
             existingUser.setItemId(item.getItemId());
             existingUser.setName(item.getName());
             existingUser.setColsName(item.getColsName());
+            existingUser.setDataBaseId(item.getDataBaseId());
             itemService.updateItem(existingUser);
         }
     }

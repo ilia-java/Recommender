@@ -13,17 +13,29 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ItemId;
     private String name;
-    @Column
-    private Map<Integer, String> colsName;
+    private Integer dataBaseId;
 
+    public Integer getDataBaseId() {
+        return dataBaseId;
+    }
 
-    public Map<Integer, String> getColsName() {
+    public void setDataBaseId(Integer dataBaseId) {
+        this.dataBaseId = dataBaseId;
+    }
+
+    public Map<String, String> getColsName() {
         return colsName;
     }
 
-    public void setColsName(Map<Integer, String> colsName) {
+    public void setColsName(Map<String, String> colsName) {
         this.colsName = colsName;
     }
+
+    @Column
+    private Map<String, String> colsName;
+
+
+
 
     public Integer getItemId() {
         return ItemId;

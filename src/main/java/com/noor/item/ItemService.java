@@ -3,7 +3,6 @@ package com.noor.item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Id;
 import java.util.List;
 
 
@@ -13,7 +12,7 @@ public class ItemService {
     @Autowired
     private ItemRepository itemRepository;
 
-    public List<Item> getAllUsers() {
+    public List<Item> getAllItem() {
         return itemRepository.findAll();
     }
 
@@ -25,6 +24,9 @@ public class ItemService {
     public void updateItem(Item item) {
         itemRepository.save(item);
 
+    }
+    public Item getDataBaseId(int dataBaseId){
+        return itemRepository.findById(dataBaseId).orElse(null);
     }
 
     public Item addItem(Item item) {

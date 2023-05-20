@@ -15,6 +15,15 @@ public class User {
     private Map<Integer, String> colsName;
     private String userName;
     private Object password;
+    private Integer dataBaseId;
+
+    public Integer getDataBaseId() {
+        return dataBaseId;
+    }
+
+    public void setDataBaseId(Integer dataBaseId) {
+        this.dataBaseId = dataBaseId;
+    }
     private String property;
 
 

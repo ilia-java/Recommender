@@ -23,6 +23,11 @@ public class UserController {
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
+    @GetMapping(value = "/dataBaseId")
+    public User getDataBaseId(@PathVariable String id){
+        return userService.getDataBaseId(id);
+    }
+
 
     @GetMapping("/users/{id}")
     public User getUserById(@PathVariable String id) {
@@ -52,6 +57,7 @@ public class UserController {
             existingUser.setProperty(user.getProperty());
             existingUser.setPassword(user.getPassword());
             existingUser.setColsName(user.getColsName());
+            existingUser.setDataBaseId(user.getDataBaseId());
             userService.updateUser(existingUser);
         }
     }
