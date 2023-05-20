@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 // write get value by item id baraye user ham bezar
 //config mongo va ezafe kardane kelase jadid
+//logger
 @Component
 @RestController
 @RequestMapping(value = "/item/controller")

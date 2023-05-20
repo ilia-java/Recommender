@@ -34,9 +34,6 @@ public class Item {
     @Column
     private Map<String, String> colsName;
 
-
-
-
     public Integer getItemId() {
         return ItemId;
     }
