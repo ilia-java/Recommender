@@ -1,4 +1,5 @@
 package com.noor.interactions;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -13,6 +14,15 @@ public class Interactions {
     private String itemID;
     private String userID;
     private Integer rating;
+    private String timeStamp;
+
+    public String getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
+    }
 
     public String getDatabaseID() {
         return databaseID;

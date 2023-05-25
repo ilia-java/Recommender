@@ -9,6 +9,11 @@ import java.util.List;
 
 @Service
 public class UserService {
+    private final MongoTemplate mongoTemplate;
+
+    public UserService(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
 
 
     @Autowired
@@ -41,5 +46,9 @@ public class UserService {
 
     public void deleteUserById(String id) {
         userRepository.deleteById(id);
+    }
+
+    public MongoTemplate getMongoTemplate() {
+        return mongoTemplate;
     }
 }

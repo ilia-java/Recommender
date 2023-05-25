@@ -3,6 +3,7 @@ package com.noor.item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
+
 // write get value by item id baraye user ham bezar
 //config mongo va ezafe kardane kelase jadid
 //logger
@@ -26,8 +27,9 @@ public class ItemController {
     public Item getItem(@PathVariable Integer id) {
         return itemService.getById(id);
     }
+
     @GetMapping(value = "/dataBaseId")
-    public Item getDataBaseId(@PathVariable int id){
+    public Item getDataBaseId(@PathVariable int id) {
         return itemService.getDataBaseId(id);
     }
 
@@ -35,8 +37,9 @@ public class ItemController {
     public Item createNewItem(@RequestBody Item newItem) {
         return itemService.addItem(newItem);
     }
+
     @PostMapping(value = ("/colName"))
-    public Item insertColName(@RequestBody Item item){
+    public Item insertColName(@RequestBody Item item) {
         return itemService.addColName(item);
     }
 

@@ -1,6 +1,7 @@
 package com.noor.item;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,11 +9,17 @@ import java.util.List;
 
 @Service
 public class ItemService {
+    private final MongoTemplate mongoTemplate;
+
+    public ItemService(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
 
     @Autowired
     private ItemRepository itemRepository;
 
     public List<Item> getAllItem() {
+
         return itemRepository.findAll();
     }
 
@@ -22,10 +29,13 @@ public class ItemService {
     }
 
     public void updateItem(Item item) {
+
         itemRepository.save(item);
 
     }
-    public Item getDataBaseId(int dataBaseId){
+
+    public Item getDataBaseId(int dataBaseId) {
+
         return itemRepository.findById(dataBaseId).orElse(null);
     }
 
@@ -42,5 +52,9 @@ public class ItemService {
     public Item addColName(Item item) {
 
         return itemRepository.insert(item);
+    }
+
+    public MongoTemplate getMongoTemplate() {
+        return mongoTemplate;
     }
 }
