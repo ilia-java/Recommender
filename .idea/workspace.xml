@@ -4,15 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="864ee2fa-1977-4ebd-ad89-c93799fe1189" name="Changes" comment="Interactions started">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/noor/interactions/InteractionsController.java" afterDir="false" />
+    <list default="true" id="864ee2fa-1977-4ebd-ad89-c93799fe1189" name="Changes" comment="Interactions finished">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/noor/recommendedItems/RecommendedItems.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/noor/recommendedItems/RecommendedItemsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/noor/recommendedItems/RecommendedItemsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/noor/recommendedItems/RecommendedItemsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/interactions/Interactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/interactions/Interactions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/interactions/InteractionsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/interactions/InteractionsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/interactions/InteractionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/interactions/InteractionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/item/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/item/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/item/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/item/ItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/item/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/item/ItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/user/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684593481416</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Interactions finished">
+      <created>1685013837837</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1685013837837</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -182,7 +191,8 @@
     <MESSAGE value="user colName was edited" />
     <MESSAGE value="dataBaseId was edited" />
     <MESSAGE value="Interactions started" />
-    <option name="LAST_COMMIT_MESSAGE" value="Interactions started" />
+    <MESSAGE value="Interactions finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="Interactions finished" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,7 +1,5 @@
 package com.noor.user;
 
-import com.noor.item.Item;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
@@ -11,42 +9,42 @@ import java.util.List;
 public class UserService {
     private final MongoTemplate mongoTemplate;
 
-    public UserService(MongoTemplate mongoTemplate) {
+    public UserService(MongoTemplate mongoTemplate, UserRepository userRepository) {
         this.mongoTemplate = mongoTemplate;
+        this.userRepository = userRepository;
     }
 
+    private final UserRepository userRepository;
 
-    @Autowired
-    private UserRepository userRepository;
 
-    public List<User> getAllUsers() {
+        public User getUserById(String dataBaseId) {
+            return userRepository.findById(dataBaseId).orElse(null);
+        }
 
-        return userRepository.findAll();
-    }
+        public List<User> getAllUsers() {
+            return userRepository.findAll();
+        }
 
-    public User getUserById(String id) {
-        return
-                userRepository.findById(id).orElse(null);
-    }
-    public User getDataBaseId(String dataBaseId){
-        return userRepository.findById(dataBaseId).orElse(null);
-    }
+        public User createUser(User user) {
+            return userRepository.save(user);
+        }
 
-    public void updateUser(User user) {
+        public User updateUser(String dataBaseId, User user) {
+            User existingUser = userRepository.findById(dataBaseId).orElse(null);
+            if (existingUser == null) {
+                return null;
+            } else {
+                existingUser.setUserID(user.getUserID());
+                existingUser.setUserName(user.getUserName());
+                existingUser.setColsName(user.getColsName());
+                existingUser.setPassword(user.getPassword());
+                return userRepository.save(existingUser);
+            }
+        }
 
-        userRepository.save(user);
-    }
-
-    public User addUser(User user) {
-        return userRepository.insert(user);
-    }
-    public User addColName(User user) {
-        return userRepository.insert(user);
-    }
-
-    public void deleteUserById(String id) {
-        userRepository.deleteById(id);
-    }
+        public void deleteUser(String dataBaseId) {
+            userRepository.deleteById(dataBaseId);
+        }
 
     public MongoTemplate getMongoTemplate() {
         return mongoTemplate;

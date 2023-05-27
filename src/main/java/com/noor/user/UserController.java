@@ -1,9 +1,10 @@
 package com.noor.user;
 
-import com.noor.item.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+
 
 import java.util.List;
 
@@ -13,52 +14,36 @@ import java.util.List;
 
 public class UserController {
     @Autowired
-    UserService userService;
+        private final UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+        public UserController(UserService userService) {
+            this.userService = userService;
+        }
 
-    @GetMapping("/users")
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
-    }
-    @GetMapping(value = "/dataBaseId")
-    public User getDataBaseId(@PathVariable String id){
-        return userService.getDataBaseId(id);
-    }
+        @GetMapping("/{dataBaseId}")
+        public User getUserById(@PathVariable String dataBaseId) {
+            return userService.getUserById(dataBaseId);
+        }
 
+        @GetMapping
+        public List<User> getAllUsers() {
+            return userService.getAllUsers();
+        }
 
-    @GetMapping("/users/{id}")
-    public User getUserById(@PathVariable String id) {
-        return userService.getUserById(id);
-    }
+        @PostMapping
+        @ResponseStatus(HttpStatus.CREATED)
+        public User createUser(@RequestBody User user) {
+            return userService.createUser(user);
+        }
 
-    @PostMapping("/users")
-    public void saveUser(@RequestBody User user) {
-        userService.addUser(user);
-    }
-    @PostMapping(value = ("/colName"))
-    public User insertColName(@RequestBody User user){
-        return userService.addColName(user);
-    }
+        @PutMapping("/{dataBaseId}")
+        public User updateUser(@PathVariable String dataBaseId, @RequestBody User user) {
+            return userService.updateUser(dataBaseId, user);
+        }
 
-    @DeleteMapping("/users/{id}")
-    public void deleteUserById(@PathVariable String id) {
-        userService.deleteUserById(id);
-    }
-
-    @PutMapping("/users/{id}")
-    public void updateUser(@PathVariable String id, @RequestBody User user) {
-        User existingUser = userService.getUserById(id);
-        if (existingUser != null) {
-            existingUser.setUserID(user.getUserID());
-            existingUser.setUserName(user.getUserName());
-            existingUser.setProperty(user.getProperty());
-            existingUser.setPassword(user.getPassword());
-            existingUser.setColsName(user.getColsName());
-            existingUser.setDataBaseId(user.getDataBaseId());
-            userService.updateUser(existingUser);
+        @DeleteMapping("/{dataBaseId}")
+        @ResponseStatus(HttpStatus.NO_CONTENT)
+        public void deleteUser(@PathVariable String dataBaseId) {
+            userService.deleteUser(dataBaseId);
         }
     }
-}

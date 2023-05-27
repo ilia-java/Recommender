@@ -31,7 +31,8 @@ public class InteractionsController {
 
     @PutMapping("/{id}")
     public Interactions updateInteraction(@PathVariable("id") String id, @RequestBody Interactions newInteraction) {
-       return interactionsService.updateInteraction(id, newInteraction);
+        return interactionsService.updateInteraction(id, newInteraction);
+
     }
 
     @DeleteMapping("/{id}")

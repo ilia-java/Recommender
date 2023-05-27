@@ -3,61 +3,47 @@ package com.noor.item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
 
-// write get value by item id baraye user ham bezar
-//config mongo va ezafe kardane kelase jadid
-//logger
+
+import java.util.List;
+
+
 @Component
-@RestController
 @RequestMapping(value = "/item/controller")
+@RestController
 public class ItemController {
-    @Autowired
+@Autowired
     private final ItemService itemService;
 
     public ItemController(ItemService itemService) {
         this.itemService = itemService;
     }
 
-    @GetMapping(value = "/items")
-    public @ResponseBody Iterable<Item> getAllItem() {
-        return itemService.getAllItem();
+    @GetMapping("/{dataBaseId}")
+    public Item getItemById(@PathVariable int dataBaseId) {
+        return itemService.getItemById(dataBaseId);
     }
 
-    @GetMapping(value = "view/{id}")
-    public Item getItem(@PathVariable Integer id) {
-        return itemService.getById(id);
+    @GetMapping
+    public List<Item> getAllItems() {
+        return itemService.getAllItems();
     }
 
-    @GetMapping(value = "/dataBaseId")
-    public Item getDataBaseId(@PathVariable int id) {
-        return itemService.getDataBaseId(id);
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Item createItem(@RequestBody Item item) {
+        return itemService.createItem(item);
     }
 
-    @PostMapping(value = "/add")
-    public Item createNewItem(@RequestBody Item newItem) {
-        return itemService.addItem(newItem);
+    @PutMapping("/{dataBaseId}")
+    public Item updateItem(@PathVariable int dataBaseId, @RequestBody Item item) {
+        return itemService.updateItem(dataBaseId, item);
     }
 
-    @PostMapping(value = ("/colName"))
-    public Item insertColName(@RequestBody Item item) {
-        return itemService.addColName(item);
+    @DeleteMapping("/{dataBaseId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteItem(@PathVariable int dataBaseId) {
+        itemService.deleteItem(dataBaseId);
     }
-
-    @PutMapping("/update/{id}")
-    public void updateItem(@PathVariable int id, @RequestBody Item item) {
-        Item existingUser = itemService.getById(id);
-        if (existingUser != null) {
-            existingUser.setItemId(item.getItemId());
-            existingUser.setName(item.getName());
-            existingUser.setColsName(item.getColsName());
-            existingUser.setDataBaseId(item.getDataBaseId());
-            itemService.updateItem(existingUser);
-        }
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public void deleteUserById(@PathVariable int id) {
-        itemService.deleteItem(id);
-    }
-
 }

@@ -14,6 +14,9 @@ public class Item {
     private Integer ItemId;
     private String name;
     private Integer dataBaseId;
+    @Column
+    private Map<String, String> colsName;
+
 
     public Integer getDataBaseId() {
         return dataBaseId;
@@ -31,8 +34,6 @@ public class Item {
         this.colsName = colsName;
     }
 
-    @Column
-    private Map<String, String> colsName;
 
     public Integer getItemId() {
         return ItemId;

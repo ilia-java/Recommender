@@ -4,55 +4,48 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
 
 
 @Service
 public class ItemService {
     private final MongoTemplate mongoTemplate;
+    private final ItemRepository itemRepository;
 
-    public ItemService(MongoTemplate mongoTemplate) {
+
+    public ItemService(MongoTemplate mongoTemplate, ItemRepository itemRepository) {
         this.mongoTemplate = mongoTemplate;
+        this.itemRepository = itemRepository;
     }
 
-    @Autowired
-    private ItemRepository itemRepository;
+        public Item getItemById(int dataBaseId) {
+            return itemRepository.findById(dataBaseId).orElse(null);
+        }
 
-    public List<Item> getAllItem() {
+        public List<Item> getAllItems() {
+            return itemRepository.findAll();
+        }
 
-        return itemRepository.findAll();
-    }
+        public Item createItem(Item item) {
+            return itemRepository.save(item);
+        }
 
-    public Item getById(int id) {
+        public Item updateItem(int dataBaseId, Item item) {
+            Item existingItem = itemRepository.findById(dataBaseId).orElse(null);
+            if (existingItem == null) {
+                return null;
+            } else {
+                existingItem.setName(item.getName());
+                existingItem.setColsName(item.getColsName());
+                existingItem.setItemId(item.getItemId());
+                return itemRepository.save(existingItem);
+            }
+        }
 
-        return itemRepository.findById(id).orElse(null);
-    }
-
-    public void updateItem(Item item) {
-
-        itemRepository.save(item);
-
-    }
-
-    public Item getDataBaseId(int dataBaseId) {
-
-        return itemRepository.findById(dataBaseId).orElse(null);
-    }
-
-    public Item addItem(Item item) {
-
-        return itemRepository.insert(item);
-    }
-
-    public void deleteItem(int id) {
-
-        itemRepository.deleteById(id);
-    }
-
-    public Item addColName(Item item) {
-
-        return itemRepository.insert(item);
-    }
+        public void deleteItem(int dataBaseId) {
+            itemRepository.deleteById(dataBaseId);
+        }
 
     public MongoTemplate getMongoTemplate() {
         return mongoTemplate;
