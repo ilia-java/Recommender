@@ -48,4 +48,17 @@ public class InteractionsController {
         logger.info("Deleting interaction with id: {}", id);
         interactionsService.deleteInteraction(id);
     }
+
+    @ExceptionHandler()
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public void handleItemNotFoundException(Exception ex) {
+        logger.error("Item not found: {}", ex.getMessage());
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public void handleException(Exception ex) {
+        logger.error("Unexpected error occurred: {}", ex.getMessage());
+    }
+
 }

@@ -31,7 +31,7 @@ public class InteractionsService {
     }
 
     public Interactions addInteraction(Interactions interaction) {
-        logger.info("Adding new interaction for user {} and item {}", interaction.getUserID(), interaction.getItemID());
+        logger.info("Adding new interaction for user {} and item {}", interaction.getUserID(), interaction.getItemID()); // ثبت لاگ با سطح INFO
         return interactionsRepository.save(interaction);
     }
 

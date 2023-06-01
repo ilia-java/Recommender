@@ -60,4 +60,17 @@ public class UserController {
         logger.info( "delete user with dataBaseId: {}", dataBaseId);
         userService.deleteUser(dataBaseId);
     }
+
+    @ExceptionHandler()
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public void handleItemNotFoundException(Exception ex) {
+        logger.error("Item not found: {}", ex.getMessage());
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public void handleException(Exception ex) {
+        logger.error("Unexpected error occurred: {}", ex.getMessage());
+    }
+
 }
