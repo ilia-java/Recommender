@@ -1,15 +1,18 @@
 package com.noor.recommendedItems;
 
+import com.noor.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/recommended-items")
+@RequestMapping("/recommendedItems")
 public class RecommendedItemsController {
     private static final Logger logger = LoggerFactory.getLogger(RecommendedItemsController.class);
 
@@ -20,47 +23,34 @@ public class RecommendedItemsController {
         this.recommendedItemsService = recommendedItemsService;
     }
 
-    @GetMapping("/{dataBaseId}")
-    public RecommendedItems getRecommendedItemById(@PathVariable String dataBaseId) {
-        logger.info("Getting recommended item with id: {}", dataBaseId);
-        return recommendedItemsService.getRecommendedItemsById(dataBaseId);
+    @GetMapping(value = "/get/{userId}/{databaseId}/{count}", produces = "application/json")
+    public List<RecommendedItems> get(
+            @PathVariable("userId") List<String> userIdList,
+            @PathVariable("databaseId") List<String> databaseIdList,
+            @PathVariable("count") List<Integer> countList) {
+        return recommendedItemsService.getRecommendedItem(userIdList, databaseIdList, countList);
     }
 
-    @GetMapping
-    public List<RecommendedItems> getAllRecommendedItems() {
-        logger.info("Getting all recommended items");
-        return recommendedItemsService.getAllRecommendedItems();
-    }
-    @PostMapping
+    @PostMapping(value = "/add", consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public RecommendedItems createRecommendedItem(@RequestBody RecommendedItems recommendedItem) {
-        logger.info("Adding new recommended item  with dataBaseId: {}", recommendedItem.getDataBaseId());
-        return recommendedItemsService.addRecommendedItems(recommendedItem);
+    public ResponseEntity<RecommendedItems> createRecommendedItem(@RequestBody RecommendedItems recommendedItem) {
+        logger.info("Creating new recommended item with dataBaseId: {}", recommendedItem.getDatabaseId());
+        RecommendedItems createdRecommendedItem = recommendedItemsService.addRecommendedItems(recommendedItem);
+        return ResponseEntity.ok(createdRecommendedItem);
     }
 
-    @PutMapping("/{dataBaseId}")
-    public RecommendedItems updateRecommendedItem(@PathVariable String dataBaseId, @RequestBody RecommendedItems recommendedItem) {
-        logger.info(" update recommended item with dataBaseId: {}", dataBaseId);
-        return recommendedItemsService.updateRecommendedItems(dataBaseId, recommendedItem);
+    @PutMapping(value = "/update", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<List<RecommendedItems>> updateRecommendedItem(@RequestBody List<RecommendedItems> recommendedItems) {
+        List<RecommendedItems> updateRecommendedItems = recommendedItemsService.updateRecommendedItems(recommendedItems);
+        logger.info("Successfully updated User with ids: {}", recommendedItems.stream().map(RecommendedItems::getUserId).collect(Collectors.toList()));
+        return ResponseEntity.status(HttpStatus.OK).body(updateRecommendedItems);
     }
 
-    @DeleteMapping("/{dataBaseId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteRecommendedItem(@PathVariable String dataBaseId){
-        logger.info("delete recommended item with dataBaseId: {}", dataBaseId);
-        recommendedItemsService.deleteRecommendedItems(dataBaseId);
+    @DeleteMapping(value = "/delete", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<String> deleteRecommendedItems(@RequestBody RecommendedItems recommendedItems) {
+        logger.info("Deleting user with id: {}", recommendedItems.getUserId());
+        recommendedItemsService.deleteRecommendedItems(recommendedItems);
+        String message = "RecommendedItem with userId " + recommendedItems.getUserId() + "and with databaseId" + recommendedItems.getDatabaseId() + " deleted successfully";
+        return ResponseEntity.ok().body(message);
     }
-
-    @ExceptionHandler()
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public void handleItemNotFoundException(Exception ex) {
-        logger.error("Item not found: {}", ex.getMessage());
-    }
-
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public void handleException(Exception ex) {
-        logger.error("Unexpected error occurred: {}", ex.getMessage());
-    }
-
 }

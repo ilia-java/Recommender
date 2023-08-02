@@ -2,50 +2,46 @@ package com.noor.interactions;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.Date;
 
-import javax.persistence.*;
-
-@Table(name = "Interactions")
-@Document
+@Document(collection = "interactions")
 public class Interactions {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String databaseID;
-    private String itemID;
-    private String userID;
-    private Integer rating;
-    private String timeStamp;
 
-    public String getTimeStamp() {
+
+    @Id
+    private String _id;
+    private String itemId;
+    private String userId;
+    private String databaseId;
+    private Integer rating;
+    private Date timeStamp;
+
+    public Date getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(String timeStamp) {
+    public void setTimeStamp(Date timeStamp) {
         this.timeStamp = timeStamp;
     }
 
-    public String getDatabaseID() {
-        return databaseID;
+    public void setDatabaseId(String databaseId) {
+        this.databaseId = databaseId;
     }
 
-    public void setDatabaseID(String databaseID) {
-        this.databaseID = databaseID;
+    public String getItemId() {
+        return itemId;
     }
 
-    public String getItemID() {
-        return itemID;
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 
-    public void setItemID(String itemID) {
-        this.itemID = itemID;
+    public String getUserId() {
+        return userId;
     }
 
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public Integer getRating() {
@@ -54,5 +50,25 @@ public class Interactions {
 
     public void setRating(Integer rating) {
         this.rating = rating;
+    }
+
+    public String getDatabaseId() {
+        return databaseId;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public Interactions getMethod(String id, String itemId, String userId, String databaseId) {
+        this._id = id;
+        this.itemId = itemId;
+        this.userId = userId;
+        this.databaseId = databaseId;
+        return null;
     }
 }

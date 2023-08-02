@@ -1,8 +1,7 @@
 package com.noor.item;
-
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import javax.persistence.*;
 import java.util.Map;
 
@@ -10,37 +9,34 @@ import java.util.Map;
 @Document
 public class Item {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer ItemId;
+    private String _id;
+    private String databaseId;
+    private String itemId;
     private String name;
-    private Integer dataBaseId;
-    @Column
     private Map<String, String> colsName;
 
-
-    public Integer getDataBaseId() {
-        return dataBaseId;
+    public String get_id() {
+        return _id;
     }
 
-    public void setDataBaseId(Integer dataBaseId) {
-        this.dataBaseId = dataBaseId;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
-    public Map<String, String> getColsName() {
-        return colsName;
+    public String getDatabaseId() {
+        return databaseId;
     }
 
-    public void setColsName(Map<String, String> colsName) {
-        this.colsName = colsName;
+    public void setDatabaseId(String databaseId) {
+        this.databaseId = databaseId;
     }
 
-
-    public Integer getItemId() {
-        return ItemId;
+    public String getItemId() {
+        return itemId;
     }
 
-    public void setItemId(Integer itemId) {
-        ItemId = itemId;
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 
     public String getName() {
@@ -49,5 +45,13 @@ public class Item {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Map<String, String> getColsName() {
+        return colsName;
+    }
+
+    public void setColsName(Map<String, String> colsName) {
+        this.colsName = colsName;
     }
 }

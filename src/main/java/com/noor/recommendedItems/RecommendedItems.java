@@ -3,27 +3,33 @@ package com.noor.recommendedItems;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
 @Table(name = "RecommendedItems")
 @Document
 public class RecommendedItems {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String dataBaseId;
+    private String _id;
+    private String databaseId;
     private String userId;
     private Integer count;
-    private  String scenario;
+    private String scenario;
     private Boolean cascadeCreate;
 
-    public String getDataBaseId() {
-        return dataBaseId;
+    public String get_id() {
+        return _id;
     }
 
-    public void setDataBaseId(String dataBaseId) {
-        this.dataBaseId = dataBaseId;
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public String getDatabaseId() {
+        return databaseId;
+    }
+
+    public void setDatabaseId(String databaseId) {
+        this.databaseId = databaseId;
     }
 
     public String getUserId() {

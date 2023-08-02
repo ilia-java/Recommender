@@ -1,7 +1,13 @@
 package com.noor.item;
 
 
+import com.noor.interactions.Interactions;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface ItemRepository extends MongoRepository<Item,Integer> {
+import java.util.List;
+import java.util.Optional;
+
+public interface ItemRepository extends MongoRepository<Item, Integer> {
+
+
 }

@@ -2,11 +2,12 @@ package com.noor.interactions;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/interactions")
@@ -14,51 +15,39 @@ public class InteractionsController {
 
     private static final Logger logger = LoggerFactory.getLogger(InteractionsController.class);
 
-    @Autowired
-    private InteractionsService interactionsService;
+    private final InteractionsService interactionsService;
 
-    @GetMapping
-    public List<Interactions> getAllInteractions() {
-        logger.info("Getting all interactions");
-        return interactionsService.getAllInteractions();
+    public InteractionsController(InteractionsService interactionsService) {
+        this.interactionsService = interactionsService;
     }
 
-    @GetMapping("/{id}")
-    public Interactions getInteractionById(@PathVariable("id") String id) {
-        logger.info("Getting interaction with id: {}", id);
-        return interactionsService.getInteractionById(id);
+    @GetMapping(value = "/get/{itemId}/{userId}/{databaseId}", produces = "application/json")
+    public List<Interactions> getInteractions(
+            @PathVariable("itemId") List<String> itemIdList,
+            @PathVariable("userId") List<String> userIdList,
+            @PathVariable("databaseId") List<String> databaseIdList){
+        return interactionsService.getInteractions(itemIdList, userIdList, databaseIdList);
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Interactions addInteraction(@RequestBody Interactions interaction) {
-        logger.info("Adding new interaction with id: {}", interaction.getDatabaseID());
-        return interactionsService.addInteraction(interaction);
+    @PostMapping(value = "/add", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<Interactions> createInteraction(@RequestBody Interactions interaction) {
+        Interactions createdInteraction = interactionsService.add(interaction);
+        logger.info("Successfully created interaction with id: {}", createdInteraction.get_id());
+        return ResponseEntity.ok(createdInteraction);
     }
 
-    @PutMapping("/{id}")
-    public Interactions updateInteraction(@PathVariable("id") String id, @RequestBody Interactions newInteraction) {
-        logger.info("Updating interaction with id:{}", id);
-        return interactionsService.updateInteraction(id, newInteraction);
+    @PutMapping(value = "/update", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<List<Interactions>> updateInteractions(@RequestBody List<Interactions> newInteractions) {
+        List<Interactions> updatedInteractions = interactionsService.updateInteractions(newInteractions);
+        logger.info("Successfully updated interactions with ids: {}", newInteractions.stream().map(Interactions::getItemId).collect(Collectors.toList()));
+        return ResponseEntity.status(HttpStatus.OK).body(updatedInteractions);
     }
 
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteInteraction(@PathVariable("id") String id) {
-        logger.info("Deleting interaction with id: {}", id);
-        interactionsService.deleteInteraction(id);
+    @DeleteMapping(value = "/delete", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<String> deleteInteraction(@RequestBody Interactions interactions) {
+        logger.info("Deleting interaction with id: {}", interactions.getItemId());
+        interactionsService.deleteInteractions(interactions);
+        String message = "Interaction with id " + interactions.getItemId() + "and with itemId" + interactions.getItemId() + "and with databaseId" + interactions.getDatabaseId() + " deleted successfully";
+        return ResponseEntity.ok().body(message);
     }
-
-    @ExceptionHandler()
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public void handleItemNotFoundException(Exception ex) {
-        logger.error("Item not found: {}", ex.getMessage());
-    }
-
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public void handleException(Exception ex) {
-        logger.error("Unexpected error occurred: {}", ex.getMessage());
-    }
-
 }

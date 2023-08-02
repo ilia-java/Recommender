@@ -1,67 +1,54 @@
 package com.noor.item;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-
-@Component
-@RequestMapping(value = "/item/controller")
 @RestController
+@RequestMapping("/item")
 public class ItemController {
+    @Autowired
     private final ItemService itemService;
     private final Logger logger = LoggerFactory.getLogger(ItemController.class);
-    @Autowired
+
     public ItemController(ItemService itemService) {
         this.itemService = itemService;
     }
 
-    @GetMapping("/{dataBaseId}")
-    public Item getItemById(@PathVariable int dataBaseId) {
-        logger.info("Getting item with id: {}", dataBaseId);
-        return itemService.getItemById(dataBaseId);
+    @GetMapping(value = "/get/{itemId}/{databaseId}", produces = "application/json")
+    public List<Item> getUser(
+            @PathVariable("itemId") List<String> itemIdList,
+            @PathVariable("databaseId") List<String> databaseIdList) {
+        List<Item> item = itemService.getItem(itemIdList, databaseIdList);
+        return item;
     }
 
-    @GetMapping
-    public List<Item> getAllItems() {
-        logger.info("Getting all items");
-        return itemService.getAllItems();
+    @PostMapping(value = "/add", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<Item> createItem(@RequestBody Item item) {
+        Item createdItem = itemService.add(item);
+        logger.info("Successfully created item with id: {}", createdItem.get_id());
+        return ResponseEntity.ok(createdItem);
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Item createItem(@RequestBody Item item) {
-        logger.info("Creating new item: {}", item.getName());
-        return itemService.createItem(item);
+    @PutMapping(value = "/update", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<List<Item>> updateItem(@RequestBody List<Item> newItem) {
+        List<Item> updatedItem = itemService.updateItem(newItem);
+        logger.info("Successfully updated item with ids: {}", newItem.stream().map(Item::getItemId).collect(Collectors.toList()));
+        return ResponseEntity.status(HttpStatus.OK).body(updatedItem);
     }
 
-    @PutMapping("/{dataBaseId}")
-    public Item updateItem(@PathVariable int dataBaseId, @RequestBody Item item) {
-        logger.info("Updating item with id: {}", dataBaseId);
-        return itemService.updateItem(dataBaseId, item);
+    @DeleteMapping(value = "/delete", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<String> deleteInteraction(@RequestBody Item item) {
+        logger.info("Deleting item with id: {}", item.getItemId());
+        itemService.deleteItem(item);
+        String message = "Item with itemId " +  item.getItemId()   + " deleted successfully";
+        return ResponseEntity.ok().body(message);
     }
 
-    @DeleteMapping("/{dataBaseId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteItem(@PathVariable int dataBaseId) {
-        logger.info("Deleting item with id: {}", dataBaseId);
-        itemService.deleteItem(dataBaseId);
-    }
-
-    @ExceptionHandler()
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public void handleItemNotFoundException(Exception ex) {
-        logger.error("Item not found: {}", ex.getMessage());
-    }
-
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public void handleException(Exception ex) {
-        logger.error("Unexpected error occurred: {}", ex.getMessage());
-    }
 }

@@ -4,16 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="864ee2fa-1977-4ebd-ad89-c93799fe1189" name="Changes" comment="RecommendedItems  finished">
+    <list default="true" id="864ee2fa-1977-4ebd-ad89-c93799fe1189" name="Changes" comment="ExceptionHandler was added">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/noor/GeneralExceptionHandling/ConnectionException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/noor/GeneralExceptionHandling/InvalidInputException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/noor/GeneralExceptionHandling/NotFoundException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/ExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/configuration/SwaggerConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/interactions/Interactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/interactions/Interactions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/interactions/InteractionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/interactions/InteractionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/interactions/InteractionsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/interactions/InteractionsRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/interactions/InteractionsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/interactions/InteractionsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/item/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/item/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/item/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/item/ItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/item/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/item/ItemRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/item/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/item/ItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/recommendedItems/RecommendedItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/recommendedItems/RecommendedItems.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/recommendedItems/RecommendedItemsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/recommendedItems/RecommendedItemsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/recommendedItems/RecommendedItemsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/recommendedItems/RecommendedItemsRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/recommendedItems/RecommendedItemsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/recommendedItems/RecommendedItemsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/user/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/user/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/user/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/user/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/noor/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noor/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +186,21 @@
       <option name="project" value="LOCAL" />
       <updated>1685175601649</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="logger was added">
+      <created>1685611162542</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1685611162542</updated>
+    </task>
+    <task id="LOCAL-00012" summary="ExceptionHandler was added">
+      <created>1685617485566</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1685617485566</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -199,7 +228,9 @@
     <MESSAGE value="Interactions started" />
     <MESSAGE value="Interactions finished" />
     <MESSAGE value="RecommendedItems  finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="RecommendedItems  finished" />
+    <MESSAGE value="logger was added" />
+    <MESSAGE value="ExceptionHandler was added" />
+    <option name="LAST_COMMIT_MESSAGE" value="ExceptionHandler was added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -208,15 +239,30 @@
           <properties class="java.lang.NoClassDefFoundError" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/noor/GeneralExceptionHandling/ConnectionException.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/noor/GeneralExceptionHandling/ConnectionException.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/noor/GeneralExceptionHandling/ConnectionException.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/noor/recommendedItems/RecommendedItemsService.java</url>
+          <line>123</line>
+          <option name="timeStamp" value="141" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="((NoClassDefFoundError)NoClassDefFoundError3683_DebugLabel).cause" custom="java.lang.NoClassDefFoundError" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Recommender$Application.ic" NAME="Application Coverage Results" MODIFIED="1681369140272" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Recommender$Application.ic" NAME="Application Coverage Results" MODIFIED="1690024323977" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

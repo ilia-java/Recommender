@@ -9,42 +9,37 @@ import java.util.Map;
 @Document
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer userID;
+    private String _id;
+    private String userId;
     @Column
-    private Map<Integer, String> colsName;
+    private Map<String, String> colsName;
     private String userName;
-    private Object password;
-    private Integer dataBaseId;
+    private String password;
+    private String databaseId;
 
-    public Integer getDataBaseId() {
-        return dataBaseId;
+
+    public String get_id() {
+        return _id;
     }
 
-    public void setDataBaseId(Integer dataBaseId) {
-        this.dataBaseId = dataBaseId;
-    }
-    private String property;
-
-
-    public void setUserID(Integer userID) {
-        this.userID = userID;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
-    public Map<Integer, String> getColsName() {
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public Map<String, String> getColsName() {
         return colsName;
     }
 
-    public void setColsName(Map<Integer, String> colsName) {
+    public void setColsName(Map<String, String> colsName) {
         this.colsName = colsName;
-    }
-
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
     }
 
     public String getUserName() {
@@ -55,19 +50,19 @@ public class User {
         this.userName = userName;
     }
 
-    public Object getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(Object password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public String getProperty() {
-        return property;
+    public String getDatabaseId() {
+        return databaseId;
     }
 
-    public void setProperty(String property) {
-        this.property = property;
+    public void setDatabaseId(String databaseId) {
+        this.databaseId = databaseId;
     }
 }
